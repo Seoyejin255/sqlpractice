@@ -1,0 +1,345 @@
+[ 1번 ]
+
+ 
+
+show databases;
+
+create database users;
+
+use users;
+
+ 
+
+ 1) 방법1 -- primary key 를 설정하는 방법이 서로 다름.
+
+create table board_guest( 
+
+    num int,
+
+    content varchar(20),
+
+    writer varchar(20),
+
+    primary key(num)
+
+);
+
+ 
+
+2) 방법2
+
+create table board_guest( 
+
+    num int primary key,
+
+    content varchar(20),
+
+    writer varchar(20)
+
+);
+
+ 
+
+show tables;
+
+select * from board_guest;
+
+drop table board_guest;
+
+desc board_guest;  // 테이블의 필드가 어떤 상태인지 알려줌.
+
+ 
+
+insert into board_guest values(1,'안녕','안');
+
+insert into board_guest values(2,'바이','가');
+
+insert into board_guest values(3,'하이','나');
+
+ 
+
+update board_guest set writer="김" where num=2; // num이 2 인 곳에 writer를 '김'으로 바꿔달라.
+
+ 
+
+ [ 2번 ]
+
+ 
+
+SHOW DATABASES;
+
+USE USERS;
+
+show TABLES;
+
+ 
+
+CREATE TABLE member(
+
+num int auto_increment primary key,
+
+id varchar(20) not null unique,
+
+nickname varchar(20) not null,
+
+age int  not null,
+
+sex varchar(10) not null,
+
+phone_number varchar(20) not null,
+
+hobby varchar(20) null
+
+);
+
+ 
+
+insert into member (id,nickname,age,sex,phone_number) values('wow','와우',32,'male','010-1234-1234');
+
+insert into member (id,nickname,age,sex,phone_number,hobby) values('wow2','와우',32,'male','010-1234-1234','농구');
+
+insert into member (id,nickname,age,sex,phone_number) values('wow3','와우',32,'male','010-1234-1234');
+
+ 
+
+select * from member;
+
+delete from member;
+
+drop table member;
+
+ 
+
+ [3번]
+
+show databases;
+
+use users;
+
+ 
+
+create table tottenham_squad(                        											
+
+	id int primary key auto_increment,		#primary key : 테이블에는 한 칼럼에 대해 키(id) 값을 부여할 수 있음. 아이디를 부여하겠다는 선언. 아이디는 중복으로 입력 불가. 그래서 이 값으로 특정 행(레코드) 데이터를 검색 할 수 있게 됨.								
+
+			#auto_increment : 이 설정이 추가 된 칼럼(열) 은 다른 칼럼(열)들의 값을 입력하고 이 칼럼은 데이터를 입력하지 않아도 자동으로 1~n 값으로 순서대로 입력 처리 됨.								
+
+	p_number int,										
+
+	p_name char(50),										
+
+	p_birth date,	#birth									
+
+	p_position char(20),	#포지션. ex. 공격수 수비수 미드필더 골키퍼									
+
+	p_height int,	# cm									
+
+	p_weight int	#몸무게. kg									
+
+);											
+
+ 
+
+select * from tottenham_squad;
+
+drop table player;
+
+drop table tottenham_squad;
+
+desc tottenham_squad;
+
+ 
+
+ insert into tottenham_squad values(0,7,'손흥민','1992-07-08','공격수',183,78);				
+
+insert into tottenham_squad values(0,10,'해리케인','1993-07-28','공격수',188,65);				
+
+insert into tottenham_squad values(0,9,'히살리송','1997-05-10','공격수',179,71);				
+
+insert into tottenham_squad values(0,14,'이반페리시치','1989-02-02','공격수',186,77);				
+
+insert into tottenham_squad values(0,21,'데얀클루셰프스키','2000-04-25','미드필더',186,75);				
+
+insert into tottenham_squad values(0,19,'라이언세세뇽','2000-05-18','미드필더',178,70);				
+
+insert into tottenham_squad values(0,30,'로드리고벤탄쿠르','1997-06-26','미드필더',187,77);				
+
+insert into tottenham_squad values(0,27,'루카스모우라','1992-08-13','미드필더',172,66);				
+
+insert into tottenham_squad values(0,11,'브리안 힐 살바티에라','2001-02-11','미드필더',175,60);				
+
+insert into tottenham_squad values(0,15,'에릭 다이어','1994-01-15','미드필더',188,90);				
+
+insert into tottenham_squad values(0,4,'올리버 스킵','2000-09-16','미드필더',175,70);				
+
+insert into tottenham_squad values(0,38,'이브스 비수마','1996-08-30','미드필더',182,72);				
+
+insert into tottenham_squad values(0,18,'지오바니 로셀소','1996-04-09','미드필더',177,74);				
+
+insert into tottenham_squad values(0,28,'탕귀 은돔벨레','1996-12-28','미드필더',181,76);				
+
+insert into tottenham_squad values(0,29,'파페 마타르 사르','2002-09-14','미드필더',184,70);				
+
+insert into tottenham_squad values(0,5,'페에르 호이비에르','1995-08-05','미드필더',187,84);				
+
+insert into tottenham_squad values(0,8,'해리 윙크스','1996-02-02','미드필더',178,74);				
+
+insert into tottenham_squad values(0,6,'다빈손 산체스','1996-06-12','수비수',187,81);				
+
+insert into tottenham_squad values(0,24,'디드 스펜스','2000-08-09','수비수',184,80);				
+
+insert into tottenham_squad values(0,2,'맷 도허티','1992-01-16','수비수',186,89);				
+
+insert into tottenham_squad values(0,33,'벤 데이비스','1993-04-24','수비수',181,76);				
+
+insert into tottenham_squad values(0,3,'세르히오 레길론','1996-12-16','수비수',178,70);				
+
+insert into tottenham_squad values(0,12,'에메르송','1999-01-14','수비수',181,79);				
+
+insert into tottenham_squad values(0,25,'자페 탕가가','1999-03-31','수비수',184,83);				
+
+insert into tottenham_squad values(0,17,'크리스티안 로메로','1998-04-27','수비수',185,79);				
+
+insert into tottenham_squad values(0,34,'클레망 랑글레','1995-06-17','수비수',186,81);				
+
+insert into tottenham_squad values(0,40,'브랜든 오스틴','1999-01-08','골키퍼',188,80);				
+
+insert into tottenham_squad values(0,1,'위고 요리스','1986-12-26','골키퍼',188,82);				
+
+insert into tottenham_squad values(0,20,'프레이저 포스터','1988-03-17','골키퍼',201,93);	
+
+			 
+
+ 
+
+-- 토트넘 공격수만 select 해서 보기
+
+	select * from tottenham_squad where p_position="공격수";
+
+    select p_name from tottenham_squad where p_position="공격수";
+
+-- 토트넘 7번 선수 삭제하기
+
+	select * from tottenham_squad where p_number=7;
+
+    delete from tottenham_squad where p_number=7;
+
+-- 특정 번호의 선수의 이름을 수정하기
+
+	update tottenham_squad set p_name="우왕수정이용" where p_number=20;
+
+    select * from tottenham_squad where p_number=20;
+
+-- 번호가 7이상인 선수들만 출력
+
+	select * from tottenham_squad where p_number>=7;
+
+-- 번호가 6이상 이면서 이름에 '손'이 들어간 선수들만 출력
+
+	select * from tottenham_squad where p_name like "%손%" and p_number>=6;
+
+-- 선수단 테이블에 주급을 추가, 손흥민 선수의 생일정보를 입력.
+
+	alter table tottenham_squad add weekly_pay int;
+
+    select * from tottenham_squad;
+
+    update tottenham_squad set p_birth="0000-00-00" where p_name="손흥민";
+
+    select * from tottenham_squad where p_name like "%손%" and p_number>=6;
+
+    
+
+-- 선수단 선수 목록을 no 순으로 정렬해서 보기.
+
+	select * from tottenham_squad order by p_number asc; -- 기본 : 오름차순(생략 ㄱㄴ)
+
+    select * from tottenham_squad order by p_number desc; -- 내림차순
+
+-- 몇몇 선수 데이터에 주급 정보 추가하기, 선수단 목록을 주급 순으로 정렬해서 보기.
+
+	update tottenham_squad set weekly_pay=35 where p_number=40;
+
+	update tottenham_squad set weekly_pay=40 where p_number=38;
+
+	update tottenham_squad set weekly_pay=45 where p_number=34;
+
+    update tottenham_squad set weekly_pay=50 where p_number=33;
+
+    
+
+    select p_number,p_name,weekly_pay from tottenham_squad where weekly_pay is not null order by weekly_pay desc;
+
+    -- 선수단 정보 중 등번호, 이름만 뽑아보기
+
+    select p_number,p_name from tottenham_squad;
+
+    -- 동일한 주급을 받는 선수가 있게 수정해두기, 선수단 정보 중 주급만 뽑아보기(중복 없애기.)
+
+	select * from tottenham_squad where weekly_pay is not null;
+
+    update tottenham_squad set weekly_pay=40 where p_name="손흥민";
+
+    update tottenham_squad set weekly_pay=40 where p_name="프레이저 포스터";
+
+    select distinct weekly_pay from tottenham_squad where weekly_pay is not null order by weekly_pay;
+
+	-- 선수단 정보 중 등번호 이름, 주급만 뽑아보기. 주급 칼럼명은 한글로 표시
+
+    select p_number,p_name,weekly_pay as "주급" from tottenham_squad;
+
+    -- 선수단 정보 중 등번호, 이름 , 일급 표시(일급은 주급을 7로 나누면 됨.)
+
+    select p_number,p_name,weekly_pay/7 as "일급" from tottenham_squad where weekly_pay is not null;
+
+    -- 19를 소수점을 반올림 처리, 19를 소수점을 버림 처리.
+
+    select p_number,p_name,round(weekly_pay/7) as "일급" from tottenham_squad where weekly_pay is not null;
+
+	select p_number,p_name,trunc((weekly_pay/7),1) as "일급" from tottenham_squad where weekly_pay is not null;
+
+    -- 선수단 정보 중 등번호,이름을 출력 - 조건은 주급이 얼마 이상이고 연봉이 얼마 이상인 선수만 출력
+
+    select p_number,p_name from tottenham_squad where weekly_pay>=40;
+
+    -- 선수단 정보 중 등번호,이름을 출력 - 조건은 주급이  이상인 선수만 출력
+
+    
+
+    -- 칼럼 추가	몇명을 부상으로 체크하기	부상이 아닌 선수들 출력하기	
+
+	ALTER TABLE tottenham_squad add injury char(1);
+
+    update tottenham_squad set injury="y" where p_name like "%손%";
+
+    select * from tottenham_squad where injury is not null;
+
+    select  * from tottenham_squad;
+
+    -- 선수단 정보 중 이름에 '손' 이 들어간거 출력, '케' 이 들어간거 출력
+
+    select * from tottenham_squad where p_name like "%손%" or p_name like "%케%";
+
+    select * from tottenham_squad where name like '%손%'			
+
+	union		
+
+	select * from tottenham_squad where name like '%케%';		
+
+    -- 현재시간 출력
+
+    select now() from dual;
+
+    select curdate() from dual;
+
+    select curtime() from dual;
+
+    select DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s') from dual;
+
+    
+
+    
+
+ 
+
+ 
