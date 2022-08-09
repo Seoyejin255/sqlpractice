@@ -1,0 +1,71 @@
+show databases;
+create database kiosk;
+use kiosk;
+
+# 대충 설명
+# users 에선 uid는 unique 로, unickname 을 primary key 로 설정함.
+# managers에선 mid를 primary key 로 설정하였고, 외래키는 없음.
+# board 테이블에선 bNum 을 primary key 로 지정하였고, bid를 외래키로 지정함. 참조하는건 users의 unickname. 
+# comment 테이블에선 boardnum을 외래키로 지정하였고, board 테이블의 bNum을 참조하도록함. primarykey는 commentnum으로 지정.
+# 근데 foreign key 를 함부로 설정하지는 말자 --> https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=hist0134&logNo=220249120040 참고
+
+create table users(
+uid varchar(20) not null unique,
+upw varchar(20) not null,
+unickname varchar(20) not null primary key,
+upayment int,
+ustock varchar(150)
+);
+insert into users (uid,upw,unickname) values("user","1234","유저1");
+insert into users (uid,upw,unickname) values("user2","1234","유저2");
+insert into users (uid,upw,unickname) values("user3","1234","유저3");
+insert into users (uid,upw,unickname) values("user4","1234","유저4");
+insert into users (uid,upw,unickname) values("user5","1234","유저5");
+select * from users;
+drop table users;
+update users set unickname="뿡빵이" where uid="user";
+-- 외래키 참조하는 users의 unickname을 수정해보려고 함
+
+
+
+drop table users;
+
+create table managers(
+mid varchar(20) not null primary key,
+mpw varchar(20) not null,
+mnickname varchar(20) not null
+);
+insert into managers values("manager","1234","매니저1");
+insert into managers values("manager2","1234","매니저2");
+insert into managers values("manager3","1234","매니저3");
+insert into managers values("manager4","1234","매니저4");
+insert into managers values("manager5","1234","매니저5");
+
+
+drop table managers;
+delete from managers where id="user";
+
+create table board(
+bNum int auto_increment not null primary key,
+bid varchar(20) not null,
+btitle varchar(100),
+bcontent text ,
+bLike int default 0 not null,
+bhit int default 0 not null,
+bdate datetime,
+comNum int, #원글 번호
+com varchar(300)
+);
+desc users;
+desc board;
+select * from board;
+insert into board(bid,btitle,bdate,bcontent) values("유저1","안녕",now(),"나 집에 가고싶어"); #board에 글쓰기
+insert into board(comNum,bid,com,bdate) values("1","뿡빵이","나도 ㅠㅠ",now()); #1번 글에 댓글 쓰기
+
+select * from board order by bNum desc limit 0,8;
+
+drop table board;
+
+select * from board;
+select * from managers;
+select * from users;
