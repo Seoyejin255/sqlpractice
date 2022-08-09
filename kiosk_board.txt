@@ -1,0 +1,59 @@
+show databases;
+create database kiosk;
+use kiosk;
+
+create table users(
+uid varchar(20) not null primary key,
+upw varchar(20) not null,
+unickname varchar(20) not null,
+upayment int,
+ustock varchar(150)
+);
+insert into users (uid,upw,unickname) values("user","1234","유저1");
+drop table users;
+
+drop table users;
+
+desc board;
+create table managers(
+mid varchar(20) not null primary key,
+mpw varchar(20) not null,
+mnickname varchar(20) not null
+);
+insert into managers values("manager","1234","매니저1");
+
+drop table managers;
+delete from managers where id="user";
+
+create table board(
+bNum int auto_increment not null primary key,
+bid varchar(20) not null,
+btitle varchar(100) not null,
+bcontent varchar(8000) not null,
+bLike int default 0 not null,
+bhit int default 0 not null,
+bdate datetime not null
+);
+
+
+insert into board(bid,btitle,bdate,bcontent) values("mamo","안녕",now(),"나 집에 가고싶어");
+insert into board(bid,btitle,bdate,bcontent) values("mamo","안녕",now(),"나 집에 가고싶어");
+insert into board(bid,btitle,bdate,bcontent) values("babo","나도..",now(),"집이 너무 고파");
+insert into board(bid,btitle,bdate,bcontent) values("boa","잉",now(),"1시간 남았어");
+insert into board(bid,btitle,bdate,bcontent) values("흑흑","시간이 너무 안가",now(),"흑흑");
+select * from board;
+select * from board order by bNum desc limit 0,8;
+
+drop table board;
+create table comment(
+boardnum int, 			#댓글쓰는 글의 번호.
+cid varchar(20),
+ccontent varchar(1000),
+ctime varchar(30)
+);
+drop table comment;
+
+select * from comment;
+select * from board;
+select * from managers;
+select * from users;
