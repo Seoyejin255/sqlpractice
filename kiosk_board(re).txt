@@ -1,0 +1,84 @@
+show databases;
+create database kiosk;
+use kiosk;
+
+# 대충 설명
+# users 에선 uid는 unique 로, unickname 을 primary key 로 설정함.
+# managers에선 mid를 primary key 로 설정하였고, 외래키는 없음.
+# board 테이블에선 bNum 을 primary key 로 지정하였고, bid를 외래키로 지정함. 참조하는건 users의 unickname. 
+# comment 테이블에선 boardnum을 외래키로 지정하였고, board 테이블의 bNum을 참조하도록함. primarykey는 commentnum으로 지정.
+
+create table users(
+uid varchar(20) not null unique,
+upw varchar(20) not null,
+unickname varchar(20) not null primary key,
+upayment int,
+ustock varchar(150)
+);
+insert into users (uid,upw,unickname) values("user","1234","유저1");
+insert into users (uid,upw,unickname) values("user2","1234","유저2");
+insert into users (uid,upw,unickname) values("user3","1234","유저3");
+insert into users (uid,upw,unickname) values("user4","1234","유저4");
+insert into users (uid,upw,unickname) values("user5","1234","유저5");
+select * from users;
+drop table users;
+
+drop table users;
+
+desc board;
+create table managers(
+mid varchar(20) not null primary key,
+mpw varchar(20) not null,
+mnickname varchar(20) not null
+);
+insert into managers values("manager","1234","매니저1");
+insert into managers values("manager2","1234","매니저2");
+insert into managers values("manager3","1234","매니저3");
+insert into managers values("manager4","1234","매니저4");
+insert into managers values("manager5","1234","매니저5");
+
+
+drop table managers;
+delete from managers where id="user";
+
+create table board(
+bNum int auto_increment not null primary key,
+bid varchar(20) not null,
+btitle varchar(100) not null,
+bcontent varchar(8000) not null,
+bLike int default 0 not null,
+bhit int default 0 not null,
+bdate datetime not null,
+foreign key (bid) references users (unickname)
+);
+
+desc users;
+select * from board;
+insert into board(bid,btitle,bdate,bcontent) values("유저1","안녕",now(),"나 집에 가고싶어");
+insert into board(bid,btitle,bdate,bcontent) values("유저2","안녕",now(),"나 집에 가고싶어");
+insert into board(bid,btitle,bdate,bcontent) values("유저3","나도..",now(),"집이 너무 고파");
+insert into board(bid,btitle,bdate,bcontent) values("유저4","잉",now(),"1시간 남았어");
+insert into board(bid,btitle,bdate,bcontent) values("유저5","시간이 너무 안가",now(),"흑흑");
+select * from board;
+select * from board order by bNum desc limit 0,8;
+
+drop table board;
+create table comment(
+commentnum int primary key auto_increment,
+boardnum int not null, 			#댓글쓰는 글의 번호.
+cid varchar(20) not null,
+ccontent varchar(1000) not null,
+ctime varchar(30) not null,
+foreign key (boardnum) references board(bNum)
+);
+drop table comment;
+
+insert into comment (boardnum,cid,ccontent,ctime) value(1,"뿡빵이","나도 집에 가고싶어 ㅠㅠ",now());
+insert into comment (boardnum,cid,ccontent,ctime) value(1,"뿡빵이저격수","어쩔티비",now());
+insert into comment (boardnum,cid,ccontent,ctime) value(4,"둥그리","오늘은 7시간 남았어;;",now());
+insert into comment (boardnum,cid,ccontent,ctime) value(5,"둥그리","오늘은 7시간 남았어;;",now());
+
+select * from comment;
+select * from board;
+select * from managers;
+select * from users;
